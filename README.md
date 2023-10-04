@@ -15,7 +15,7 @@ This repository serves as a dual-purpose tool: it not only provides utilities to
 
 ## Introduction
 
-With the ever-changing nature of data standards, the need for converting between new and old formats becomes crucial and commonplace for many organizations. This repository contains scripts in both R and Python to perform example conversions, providing an opportunity for users to compare and contrast methodologies across two popular programming languages.
+With the ever-changing nature of data standards, the need for converting between new and old formats becomes crucial and commonplace for many organizations. This repository contains scripts in both R and Python to perform an example conversion using water quality data, providing an opportunity for users to compare and contrast methodologies across two popular programming languages.
 
 ## Directory Structure
 

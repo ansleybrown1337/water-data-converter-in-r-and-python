@@ -1,5 +1,5 @@
 ,,,,,,,mg/l,,,,,,mg/L,count/100ml,,mg/L,L,kg,,,,,,,
-Location ,Date,Irr/Storm ,Station,Dup,event,ID,op,no2,no3,tkn,tp,selenium (mg/L),TSS,E COLI,fecal,tss,Flow ,OP,NO3,NH4,TKN,TP,E COLI,fecal,TSS
+Location ,Date,Irr/Storm ,Station,Dup,event,ID,op,no2,no3,tkn,tp,selenium (mg/L),TSS,E COLI,fecal,tss,Flow ,OP,NO3,NH4,TKN,TP,E COLI,fecal,notes
 Kerbel,6/17/2022,Irr 1 rep 1,CT1,,,CT1-FF-01-GB,U,,7.1,,0.11,0.022,,,,,,,,,,,,,
 Kerbel,6/17/2022,Irr 1 rep 1,INF,,,INF-01-GB-DAY1,U,,7.9,,U,0.0055,,,,,,,,,,,,,
 Kerbel,6/17/2022,Irr 1 rep 1,MT1,,,MT1-01-LC,U,,6.5,,0.3,0.0058,,,,,,,,,,,,,
@@ -108,4 +108,3 @@ Kerbel,9/7/2022,Irr 7 rep 2,CT2,,,CT2-FF-07-GB-1,0.09,U,8.02,0.71,U,0.0069,,,,,,
 Kerbel,9/7/2022,Irr 7 rep 2,,,,KB-07-IN2-1,U,U,7.77,U,U,0.00644,,,,,,,,,,,,,"; note that irrigation 6 actually occurred on 8/18-8/19, this is irrigation 7"
 Kerbel,9/7/2022,Irr 7 rep 2,MT2,,,MT2-FF-07-GB-1,0.091,U,8.26,0.63,0.138,0.0066,,,,,,,,,,,,,"; note that due to skipped labelling on irr 6, this is actually irrigation 8"
 Kerbel,9/7/2022,Irr 7 rep 2,ST2,,,ST2-FF-07-GB-1,0.17,U,8.49,0.97,0.134,0.00589,,,,,,,,,,,,,"; note that due to skipped labelling on irr 6, this is actually irrigation 8"
-,,,,,,,,,,,,,,,,,,,,,,,,,
