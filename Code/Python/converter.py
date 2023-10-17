@@ -225,10 +225,7 @@ def convert_new_to_old(new_df, format_dict, output_csv=False):
     
     # Rename columns to map from new format back to old format.
     merged_new_data.rename(columns=reverse_format_dict, inplace=True)
-    
-    # Replace values in the 'Irr/Storm' column to be consistent with old format.
-    #merged_new_data['Irr/Storm'] = merged_new_data['Irr/Storm'].str.split().str[-1]
-    
+      
     # Ensure all columns from the old format are present. If missing, add them
     # and fill with NAs.
     for col in old_cols:

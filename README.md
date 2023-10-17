@@ -1,7 +1,7 @@
 ![Banner](/images/RtoPyBanner.png)
 # Water Quality Data Format Converter
 
-This repository serves as a dual-purpose tool: it not only provides utilities to convert between new and old water quality data formats used by the Colorado State University (CSU) Agricultural Water Quality Program (AWQP) but also acts as an educational resource for those interested in learning about performing the functions using both R and Python.
+This repository serves as a dual-purpose tool: it not only provides utilities to convert between new and old water quality data formats used by the Colorado State University (CSU) Agricultural Water Quality Program (AWQP) but also acts as an educational resource for those interested in learning about performing the functions using both **Python** and **R** coding languages.
 
 ## Table of Contents
 
