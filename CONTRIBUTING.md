@@ -10,7 +10,7 @@ First off, thank you for considering contributing to the Water Quality Data Form
 
 ## Code of Conduct
 
-By participating in this project, you are expected to uphold our Code of Conduct. Please report unacceptable behavior to [email@example.com](mailto:email@example.com).
+By participating in this project, you are expected to uphold our Code of Conduct. Please report unacceptable behavior to [ansley.brown@colostate.edu](mailto:ansley.brown@colostate.edu).
 
 ## How to Contribute
 
