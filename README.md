@@ -23,7 +23,7 @@ With the ever-changing nature of data standards, the need for converting between
 - `Code`: This directory contains all the R and Python scripts used for converting data formats.
   - `R`: Folder containing R scripts.
   - `Python`: Folder containing Python scripts.
-- `Example Old Data`: Sample datasets in the old format to help users understand the kind of data the scripts work with.
+- `Example Data`: Sample datasets in the old and new formats to help users understand the kind of data the scripts work with.
 - `images`: Contains banner PNG
 - `Output`: This directory is where the converted files will be saved after running the scripts.
 
