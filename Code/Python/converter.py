@@ -24,7 +24,11 @@ import pandas as pd
 old_data = pd.read_csv('Example Data/old_data_format.csv', header=1)
 new_data = pd.read_csv('Example Data/new_data_format.csv')
 
-old_cols = clean_old_data(old_data).columns
+old_cols = ['Location', 'Date', 'Irr/Storm', 'Station', 'Dup', 'event', 'ID', 'op',
+'no2', 'no3', 'tkn', 'tp', 'selenium (mg/L)', 'TSS', 'E COLI', 'fecal',
+'tss', 'Flow', 'OP', 'NO3', 'NH4', 'TKN', 'TP', 'E COLI.1', 'fecal.1',
+'notes']
+#clean_old_data(old_data).columns
 '''
 Should be:
 ['Location', 'Date', 'Irr/Storm', 'Station', 'Dup', 'event', 'ID', 'op',

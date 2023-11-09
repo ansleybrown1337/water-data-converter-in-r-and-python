@@ -79,6 +79,9 @@ Run the script:
 Rscript converter.R --input "../Example Old Data/sample_old_data.csv" --output "../Output/sample_new_data.csv"
 ```
 
+## Bugs and Future Work
+- Code works with example data, but didn't work with test kerbel data. Need to figure out why.
+
 ## Contribute
 
 Contributions are always welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for details on how to contribute.
