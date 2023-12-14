@@ -46,6 +46,14 @@ Should be:
 'location.name', 'treatment.name', 'method.name', 'event.type',
 'event.count', 'lab.id.y', 'matrix', 'collected', 'received', 'hold',
 'flag']
+
+# after recent 2200 data update, new_cols might be:
+Index(['location.name', 'collected', 'event.count', 'treatment.name',       
+       'duplicate', 'sample.id', 'analyte', 'result', 'units', 'non.detect',
+       'method', 'cas.number', 'mdl', 'rl', 'event.type', 'lab.id.x',       
+       'dilution', 'result.reported.to', 'flag', 'method.name',
+       'flow.vol.liter', 'long', 'lat', 'received'],
+      dtype='object')
 '''
 # Data cleaning as necessary
 def clean_old_data(old_df):
