@@ -57,9 +57,16 @@ def clean_old_data(old_df):
     # Strip trailing spaces from column names in old_data
     old_df.columns = old_df.columns.str.strip()
 
-    # If there's a 'Rep' column, rename it to 'Dup'.
+    # If there's a 'Rep' or 'DUP' column, rename it to 'Dup'.
+    if 'DUP' in old_df.columns:
+        old_df.rename(columns={'DUP': 'Dup'}, inplace=True)
     if 'Rep' in old_df.columns:
         old_df.rename(columns={'Rep': 'Dup'}, inplace=True)
+
+    # make sure all columns exist as per the old_cols list, and if not, add them
+    for col in old_cols:
+        if col not in old_df.columns:
+            old_df[col] = pd.NA
     
     # Convert values in 'Dup' column from "1" to "N" and "2" to "Y".
     old_df['Dup'] = old_df['Dup'].replace({"1": "N", "2": "Y"})
