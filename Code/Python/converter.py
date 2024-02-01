@@ -23,6 +23,9 @@ import pandas as pd
 # Import data
 old_data = pd.read_csv('Example Data/old_data_format.csv', header=1)
 new_data = pd.read_csv('Example Data/new_data_format.csv')
+# for confidential data, use the following:
+#old_data = pd.read_csv('Confidential Data/sc_2021_old.csv', header=1)
+#new_data = pd.read_csv('Confidential Data/{your file here}.csv')
 
 old_cols = ['Location', 'Date', 'Irr/Storm', 'Station', 'Dup', 'event', 'ID', 'op',
 'no2', 'no3', 'tkn', 'tp', 'selenium (mg/L)', 'TSS', 'E COLI', 'fecal',
