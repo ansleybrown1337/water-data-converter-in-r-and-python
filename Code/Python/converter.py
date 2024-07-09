@@ -21,8 +21,8 @@ TODO:
 import pandas as pd
 
 # Import data
-old_data = pd.read_csv('Example Data/old_data_format.csv', header=1)
-new_data = pd.read_csv('Example Data/new_data_format.csv')
+old_data = pd.read_csv('../../Example Data/old_data_format.csv', header=1)
+new_data = pd.read_csv('../../Example Data/new_data_format.csv')
 # for confidential data, use the following:
 #old_data = pd.read_csv('Confidential Data/sc_2021_old.csv', header=1)
 #new_data = pd.read_csv('Confidential Data/{your file here}.csv')
@@ -210,33 +210,38 @@ def convert_old_to_new(old_df, format_dict, output_csv=False):
     
     return merged_data
 
-def convert_new_to_old(new_df, format_dict, output_csv=False):
+def convert_new_to_old(new_df, format_dict, old_cols, output_csv=False):
     '''
     Converts new data format to old data format.
     inputs:
         new_df: pandas dataframe of new data format
         format_dict: dictionary mapping new column/analyte names to old names
+        old_cols: list of columns in the old data format
         output_csv: boolean; if True, saves the converted df to a CSV
     returns:
         merged_df: pandas dataframe of old data format
     Example usage:
-    >>> new_to_old_df = convert_new_to_old(new_data, 
-                                           format_dictionary_updated,
-                                           output_csv=True)
+    >>> new_to_old_df = convert_new_to_old(new_data, format_dictionary_updated, old_cols, output_csv=True)
     '''
-    
-    # Pivot new data so each analyte becomes a column.
-    pivoted_new_data = new_df.pivot(
-        index='sample.id', columns='analyte', values='result'
-    ).reset_index()
-    
-    # Merge original new data with pivoted data.
-    merged_new_data = pd.merge(
-        new_df.drop_duplicates(subset='sample.id'), 
-        pivoted_new_data, on='sample.id', how='left'
-    )
-    
-    # Create a reverse mapping from old to new format.
+
+    def pivot_data(new_df):
+        # Pivot new data so each analyte becomes a column
+        pivoted_new_data = new_df.pivot_table(
+            index=["sample.id", "location.name", "treatment.name", "event.count", "collected"],
+            columns="analyte",
+            values="result",
+            aggfunc='first'
+        ).reset_index()
+        
+        # Flatten the columns multi-index
+        #pivoted_new_data.columns = [f'{col[1]}' if col[1] else col[0] for col in pivoted_new_data.columns]
+        
+        return pivoted_new_data
+
+    # Pivot the data
+    pivoted_new_data = pivot_data(new_df)
+
+    # Create a reverse mapping from old to new format
     reverse_format_dict = {}
     for key, value in format_dict.items():
         if isinstance(value, list):
@@ -244,25 +249,40 @@ def convert_new_to_old(new_df, format_dict, output_csv=False):
                 reverse_format_dict[item] = key
         else:
             reverse_format_dict[value] = key
-    
-    # Rename columns to map from new format back to old format.
-    merged_new_data.rename(columns=reverse_format_dict, inplace=True)
-      
-    # Ensure all columns from the old format are present. If missing, add them
-    # and fill with NAs.
-    for col in old_cols:
-        if col not in merged_new_data.columns:
-            merged_new_data[col] = pd.NA
 
-    # Replace True/False values in the 'Dup' column.
-    merged_new_data['Dup'] = merged_new_data['Dup'].map({True: 'Y', False: 'N'})
-    
-    # Retain the order of columns as in the old format.
-    converted_data = merged_new_data[old_cols]
-    
-    # Export to csv if output_csv is True.
+    # Rename columns to map from new format back to old format
+    pivoted_new_data.rename(columns=reverse_format_dict, inplace=True)
+    merged_df = pivoted_new_data
+
+    # Ensure all columns from the old format are present. If missing, add them and fill with NAs.
+    for col in old_cols:
+        if col not in merged_df.columns:
+            merged_df[col] = pd.NA
+
+    # Add 'Dup' column based on 'sample.id' containing '-D'
+    merged_df['Dup'] = merged_df['ID'].apply(lambda x: 'Y' if '-D' in x else 'N')
+
+    # turn 'event' into a method column for convenience
+    def map_event(id_value):
+        if 'GB' in id_value:
+            return 'Grab Sample'
+        elif 'GBH' in id_value:
+            return 'Hourly Grab'
+        elif 'ISC' in id_value:
+            return 'ISCO'
+        elif 'LC' in id_value:
+            return 'Low-Cost'
+        else:
+            return 'Unknown'
+    merged_df['event'] = merged_df['ID'].apply(map_event)
+        
+
+    # Retain the order of columns as in the old format
+    converted_data = merged_df[old_cols]
+
+    # Export to csv if output_csv is True
     if output_csv:
-        converted_data.to_csv('Output/new_to_old_data_py.csv', index=False)
+        converted_data.to_csv('new_to_old_data_py.csv', index=False)
 
     return converted_data
 
